@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     }else{
       
       (await this.estudianteService.putEstudiante(new Estudiante(parseInt(this.cedula),this.email,parseInt(this.id),parseInt(this.id_usuario_creacion)
-      ,this.nombre,new Date(),this.telefono)));
+      ,this.nombre,new Date(this.registDate),this.telefono)));
       this.id="";
       this.cedula="";
       this.nombre="";

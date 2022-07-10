@@ -53,4 +53,26 @@ export class ProgramaService {
     this.listProgramaBusqueda = response
     console.log(this.listProgramaBusqueda)
   }
+
+  async deleteProgram(id:any){
+
+    const data = await this.httpClient.delete("http://localhost:8080/v1/gestionUniversidad/programas/eliminar/"+id).toPromise()
+    console.log(data)
+    
+  }
+  async putPrograma(programa:Programa){
+
+    const data = await this.httpClient.put("http://localhost:8080/v1/gestionUniversidad/programas/actualizar"
+    
+    
+    ,{id:programa.id,
+      nombre:programa.nombre,
+      descripcion:programa.descripcion,
+      fecha_creacion:programa.fecha_creacion
+
+      ,}).toPromise()
+    
+    console.log(data)
+    
+  }
 }

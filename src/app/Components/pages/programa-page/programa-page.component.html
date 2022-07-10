@@ -15,7 +15,7 @@
                       <label for="Descripcion" class="form-label">Descripcion</label>
                       <input name = "Descripcion" ngDefaultControl [(ngModel)]="descripcion" type="text" class="form-control" id="Descripcion">
                     </div>
-                    <button (click)="guardar()" type="submit" class="btn btn-primary">Crear Programa</button>
+                    <button (click)="guardar()" type="submit" class="btn btn-primary">{{option}}</button>
                 </div>
               
             </div>    
@@ -31,6 +31,7 @@
                 <th scope="col">nombre</th>
                 <th scope="col">descripcion</th>
                 <th scope="col">fecha_creacion</th>
+               
               </tr>
             </thead>
             <tbody>
@@ -38,7 +39,8 @@
                 <td>{{programa.id}}</td>
                 <td>{{programa.nombre}}</td>               
                 <td>{{programa.descripcion}}</td>   
-                <td>{{programa.fecha_creacion}}</td>   
+                <td>{{programa.fecha_creacion}}</td>
+                <td><button class="btn btn-secondary" (click)="Editar(programa.id,programa.nombre,programa.descripcion,programa.fecha_creacion)">Editar</button><button class="btn btn-danger" (click)="Eliminar(programa.id)">Eliminar</button></td>
               </tr>
             </tbody>
           </table>
