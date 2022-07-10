@@ -21,95 +21,61 @@
             
             <div class="mb-3">
               <label for="Buscar" class="form-label">Buscar</label>
-              <input type="text" class="form-control" id="Buscar">
+              <input name= "busqueda" type="text" class="form-control" [(ngModel)]="busqueda" id="Buscar">
             </div>
-            <button type="submit" class="btn btn-primary" (click)="Buscar()">{{seleccionada}}</button>
+            <button type="submit" class="btn btn-primary" (click)="Buscar()">Buscar</button>
             
       </div>       
             
         </form>
     </div>
     <hr>
-    <div class="tableEstudiante">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-
-                            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+    <div *ngIf = "seleccionada == 'Estudiante'" class="tableEstudiante">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">nombre</th>
+            <th scope="col">cedula</th>
+            <th scope="col">email</th>                
+            <th scope="col">id_usuario_creacion</th>                
+            <th scope="col">registDate</th>
+            <th scope="col">telefono</th>                
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of this.estudianteService.listEstudianteBusqueda" >
+            <td>{{estudiante.id}}</td>
+            <td>{{estudiante.nombre}}</td>
+            <td>{{estudiante.cedula}}</td>
+            <td>{{estudiante.email}}</td>
+            <td>{{estudiante.id_usuario_creacion}}</td>
+            <td>{{estudiante.registDate}}</td>
+            <td>{{estudiante.telefono}}</td>            
+          </tr>
+          
+            
+        </tbody>
+      </table>
     </div>
+    <div *ngIf = "seleccionada == 'Programa'" class="tablePrograma">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">nombre</th>
+              <th scope="col">descripcion</th>
+              <th scope="col">fecha_creacion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let programa of this.programaService.listProgramaBusqueda">
+              <td>{{programa.id}}</td>
+              <td>{{programa.nombre}}</td>               
+              <td>{{programa.descripcion}}</td>   
+              <td>{{programa.fecha_creacion}}</td>   
+            </tr>
+          </tbody>
+        </table>
+  </div>
 </div>

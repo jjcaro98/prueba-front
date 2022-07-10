@@ -7,6 +7,7 @@ import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 })
 export class EstudianteService {
   listEstudiante:Estudiante[]=[]
+  listEstudianteBusqueda:Estudiante[]=[]
   constructor(public httpClient:HttpClient) { 
 
     
@@ -71,5 +72,20 @@ export class EstudianteService {
     
     console.log(data)
     
+  }
+
+  async getEstudentByNameRequest(nombre:any){
+    const data = await this.httpClient.get("http://localhost:8080/v1/gestionUniversidad/estudiantes/buscar/"+nombre
+   
+    ).toPromise();
+    const json = JSON.parse(JSON.stringify(data))    
+    return json
+  }
+
+  
+  async getEstudentByName(nombre:any){
+    const response = await this.getEstudentByNameRequest(nombre);
+    this.listEstudianteBusqueda = response
+    console.log(this.listEstudianteBusqueda)
   }
 }

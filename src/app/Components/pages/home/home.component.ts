@@ -33,22 +33,24 @@ export class HomeComponent implements OnInit {
 
   async guardar(){
     if(this.editar==false){
-      await this.estudianteService.createRecordRequest(new Estudiante(parseInt(this.id),this.nombre,parseInt(this.cedula),this.id_usuario_creacion
+      await this.estudianteService.createRecordRequest(new Estudiante(parseInt(this.cedula),this.email,parseInt(this.id),parseInt(this.id_usuario_creacion)
     ,this.nombre,new Date(),this.telefono));
     console.log(this.registDate)
     this.estudianteService.getRecords();
       
     }else{
-      this.editar=false
-      this.habilitar=false
-      this.option = "Crear  Estudiante" 
-      await this.estudianteService.putEstudiante(new Estudiante(parseInt(this.id),this.nombre,parseInt(this.cedula),this.id_usuario_creacion
-      ,this.nombre,new Date(),this.telefono));
+      
+      (await this.estudianteService.putEstudiante(new Estudiante(parseInt(this.cedula),this.email,parseInt(this.id),parseInt(this.id_usuario_creacion)
+      ,this.nombre,new Date(),this.telefono)));
       this.id="";
       this.cedula="";
       this.nombre="";
       this.telefono="";
       this.email="";
+      this.editar=false
+      this.habilitar=false
+      this.option = "Crear  Estudiante";
+      (await this.estudianteService.getRecords())
      
     
     }
@@ -63,13 +65,13 @@ export class HomeComponent implements OnInit {
     this.email=email;
     this.registDate = registDate
     this.habilitar = true;
-    console.log(cedula);
+    console.log(this.editar);
     this.id_usuario_creacion=_usuario_creacion;
  
   }
 
   async Eliminar(Id:any){
-    this.estudianteService.deleteestudiante(Id)
+    (await this.estudianteService.deleteestudiante(Id))
     this.estudianteService.getRecords();
   }
 

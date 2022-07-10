@@ -6,6 +6,7 @@ import { Programa } from '../Models/programa.model';
 })
 export class ProgramaService {
   listPrograma:Programa[]=[]
+  listProgramaBusqueda:Programa[]=[]
   constructor(public httpClient:HttpClient) { }
 
   async getRecordsRequest(){
@@ -36,5 +37,20 @@ export class ProgramaService {
     ).toPromise();
     console.log(data)
     return data
+  }
+
+  async getProgramByNameRequest(nombre:any){
+    const data = await this.httpClient.get("http://localhost:8080/v1/gestionUniversidad/programas/buscar/"+nombre
+   
+    ).toPromise();
+    const json = JSON.parse(JSON.stringify(data))    
+    return json
+  }
+
+  
+  async getProgramByName(nombre:any){
+    const response = await this.getProgramByNameRequest(nombre);
+    this.listProgramaBusqueda = response
+    console.log(this.listProgramaBusqueda)
   }
 }

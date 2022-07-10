@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EstudianteService } from 'src/app/Services/estudiante.service';
+import { ProgramaService } from 'src/app/Services/programa.service';
+
 
 @Component({
   selector: 'app-search-page',
@@ -7,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SearchPageComponent implements OnInit {
+  busqueda = "";
   options = [
     {value: 'Estudiante', viewValue: 'Estudiante'},
     {value: 'Programa', viewValue: 'Programa'},
@@ -17,20 +21,21 @@ export class SearchPageComponent implements OnInit {
   ];
   seleccionada: string = this.options[0].value;
   seleccionada2: string = this.options[0].value;
-  constructor() { }
+  constructor(public programaService:ProgramaService, public estudianteService:EstudianteService) { }
 
   ngOnInit(): void {
   }
 
-  Buscar(){
+  async Buscar(){
     if(this.seleccionada=='Estudiante'&&this.seleccionada2=="Nombre"){
-      alert("Buscando por Estudiante y nombre de estudiante....")
+      (await this.estudianteService.getEstudentByName(this.busqueda))
+      
     }
     if(this.seleccionada=='Estudiante'&&this.seleccionada2=="Programa"){
       alert("Buscando por Estudiante y Programa al que pertenece....")
     }
     if(this.seleccionada=='Programa'){
-      alert("Buscando por Programa y Nombre de Programa....")
+      (await this.programaService.getProgramByName(this.busqueda))
     }
   }
 
