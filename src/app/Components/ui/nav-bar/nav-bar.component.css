@@ -1,0 +1,13 @@
+.active{
+    background-color: #ffd1ff;
+    border-radius: 5%;
+    transition: 0.5s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #2974f3;
+}
+.active:hover{
+    transform: scale(0.9);
+}

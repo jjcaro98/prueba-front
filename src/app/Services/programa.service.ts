@@ -1,0 +1,40 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Programa } from '../Models/programa.model';
+@Injectable({
+  providedIn: 'root'
+})
+export class ProgramaService {
+  listPrograma:Programa[]=[]
+  constructor(public httpClient:HttpClient) { }
+
+  async getRecordsRequest(){
+    const data = await this.httpClient.get("http://localhost:8080/v1/gestionUniversidad/programas/lista"
+   
+    ).toPromise();
+    const json = JSON.parse(JSON.stringify(data))    
+    return json
+  }
+
+  async getRecords(){
+    const response = await this.getRecordsRequest();
+    this.listPrograma = response
+    console.log(this.listPrograma)
+  }
+
+  async createRecordRequest(programa:Programa){
+    const data = await  this.httpClient.post("http://localhost:8080/v1/gestionUniversidad/programas/registrar",{
+      id:programa.id,  
+      
+      
+      descripcion:programa.descripcion,
+      fecha_creacion:programa.fecha_creacion,
+      nombre:programa.nombre,
+      
+    }
+     
+    ).toPromise();
+    console.log(data)
+    return data
+  }
+}

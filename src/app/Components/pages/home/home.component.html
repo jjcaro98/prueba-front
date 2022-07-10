@@ -1,0 +1,72 @@
+<div class="containerAll">
+    <div class="container">
+        <form class="formularioEs">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="mb-3">
+                        <label for="cedula" class="form-label">Cédula</label>
+                        <input [disabled]="habilitar" name = "cedula" ngDefaultControl [(ngModel)]="cedula" type="number" class="form-control" id="cedula">
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email address</label>
+                      <input name = "email" ngDefaultControl [(ngModel)]="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="id" class="form-label">Id</label>
+                      <input [disabled]="habilitar" name= "id" ngDefaultControl [(ngModel)]="id" type="text" class="form-control" id="id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_usuario_creacion" class="form-label">Id Usuario Creación</label>
+                        <input [disabled]="habilitar" name="id_usuario_creacion" ngDefaultControl [(ngModel)]="id_usuario_creacion" type="text" class="form-control" id="id_usuario_creacion">
+                      </div>
+                </div>
+                <div class="col-sm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input  name="nombre" ngDefaultControl [(ngModel)]="nombre" type="text" class="form-control" id="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label  for="telefono" class="form-label">Teléfono</label>
+                        <input name="telefono" ngDefaultControl [(ngModel)]="telefono" type="number" class="form-control" id="telefono">
+                    </div>
+                    <div class="mb-3">
+                       
+                    </div>
+                    <hr>
+                    <button (click)="guardar()" class="btn btn-primary">{{option}}</button>
+                </div>
+            </div>    
+            
+        </form>
+    </div>
+    <hr>
+    <div class="tableEstudiante">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">nombre</th>
+                <th scope="col">cedula</th>
+                <th scope="col">email</th>                
+                <th scope="col">id_usuario_creacion</th>                
+                <th scope="col">registDate</th>
+                <th scope="col">telefono</th>                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let estudiante of this.estudianteService.listEstudiante" >
+                <td>{{estudiante.id}}</td>
+                <td>{{estudiante.nombre}}</td>
+                <td>{{estudiante.cedula}}</td>
+                <td>{{estudiante.email}}</td>
+                <td>{{estudiante.id_usuario_creacion}}</td>
+                <td>{{estudiante.registDate}}</td>
+                <td>{{estudiante.telefono}}</td>
+                <td><button class="btn btn-secondary" (click)="Editar(estudiante.id,estudiante.nombre,estudiante.telefono,estudiante.cedula,estudiante.email,estudiante.id_usuario_creacion,estudiante.registDate)">Editar</button><button class="btn btn-danger" (click)="Eliminar(estudiante.id)">Eliminar</button></td>
+              </tr>
+              
+                
+            </tbody>
+          </table>
+    </div>
+</div>

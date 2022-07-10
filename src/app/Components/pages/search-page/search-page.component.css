@@ -1,0 +1,28 @@
+.container{
+    width: 80vw;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+.containerAll{
+    width: 100vw;  
+    height: auto; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+.btn-primary{
+    width: 100%;
+}
+.tableEstudiante{
+    display: flex;
+    align-items: center;
+    align-items: center;
+    width: 90vw;
+
+}

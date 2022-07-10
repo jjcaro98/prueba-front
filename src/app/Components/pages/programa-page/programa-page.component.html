@@ -1,0 +1,52 @@
+<div class="containerAll">
+    <div class="container">
+        <form class="formularioEs">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="mb-3">
+                        <label for="Id" class="form-label">Id</label>
+                        <input [disabled]="habilitar" name = "Id" ngDefaultControl [(ngModel)]="id" type="number" class="form-control" id="Id">
+                    </div>
+                    <div class="mb-3">
+                      <label for="nombre" class="form-label">Nombre</label>
+                      <input name = "nombre" ngDefaultControl [(ngModel)]="nombre" type="text" class="form-control" id="nombre">
+                    </div>
+                    <div class="mb-3">
+                      <label for="Descripcion" class="form-label">Descripcion</label>
+                      <input name = "Descripcion" ngDefaultControl [(ngModel)]="descripcion" type="text" class="form-control" id="Descripcion">
+                    </div>
+              
+                </div>
+                <div class="col-sm">                  
+                    <div class="mb-3">
+                        
+                    </div>
+                    <hr>
+                    <button (click)="guardar()" type="submit" class="btn btn-primary">Crear Programa</button>
+                </div>
+            </div>    
+            
+        </form>
+    </div>
+    <hr>
+    <div class="tableEstudiante">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">nombre</th>
+                <th scope="col">descripcion</th>
+                <th scope="col">fecha_creacion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let programa of this.programaService.listPrograma">
+                <td>{{programa.id}}</td>
+                <td>{{programa.nombre}}</td>               
+                <td>{{programa.descripcion}}</td>   
+                <td>{{programa.fecha_creacion}}</td>   
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
